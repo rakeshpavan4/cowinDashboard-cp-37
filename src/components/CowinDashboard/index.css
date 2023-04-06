@@ -1,0 +1,24 @@
+/* Write your CSS here */
+.bg-container {
+  background-color: #161625;
+  min-height: 100vh;
+  background-size: cover;
+  padding: 20px;
+  padding-left: 80px;
+}
+.title {
+  color: #2cc6c6;
+}
+.header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.logo {
+  height: 50px;
+  padding-right: 10px;
+  color: #cbd5e1;
+}
+.sub-title {
+  color: #cbd5e1;
+}
