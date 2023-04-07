@@ -1,24 +1,31 @@
-/* Write your CSS here */
-.bg-container {
+.total-container {
   background-color: #161625;
-  min-height: 100vh;
-  background-size: cover;
   padding: 20px;
-  padding-left: 80px;
+  min-height: 500px;
+  height: 100%vh;
+  text-align: center;
 }
-.title {
-  color: #2cc6c6;
+.header-heading {
+  color: #ffffff;
 }
-.header {
+.logo-container {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
 }
-.logo {
-  height: 50px;
-  padding-right: 10px;
-  color: #cbd5e1;
+.website-name {
+  color: #64c2a6;
 }
-.sub-title {
+.website-logo {
+  height: 80px;
+  margin-right: 15px;
+}
+.vaccination-coverage,
+.vaccination-by-gender,
+.vaccination-by-age {
+  margin: 10px;
+  background-color: #1c1c2b;
+  padding: 15px;
+}
+.div-heading {
   color: #cbd5e1;
+  font-size: 15px;
 }

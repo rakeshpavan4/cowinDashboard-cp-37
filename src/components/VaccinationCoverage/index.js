@@ -1,67 +1,66 @@
-// Write your code here
-import {Component} from 'react'
-import './index.css'
 import {
   BarChart,
   Bar,
   XAxis,
   YAxis,
   Legend,
-  CartesianGrid,
-  Tooltip,
+  ResponsiveContainer,
 } from 'recharts'
 
-const DataFormatter = number => {
-  if (number > 1000) {
-    return `${(number / 1000).toString()}k`
-  }
-  return number.toString()
-}
+const VaccinationCoverage = props => {
+  const {data} = props
 
-class VaccinationCoverage extends Component {
-  state = {vaccinationList: []}
-
-  componentDidMount() {
-    this.getDidMount()
+  const DataFormatter = number => {
+    if (number > 1000) {
+      return `${(number / 1000).toString()}k`
+    }
+    return number.toString()
   }
 
-  getDidMount = async () => {
-    const response = await fetch('https://apis.ccbp.in/covid-vaccination-data')
-    const data = await response.json()
-    const updatedData = data.last_7_days_vaccination.map(each => ({
-      vaccineDate: each.vaccine_date,
-      dose1: each.dose_1,
-      dose2: each.dose_2,
-    }))
-    this.setState({vaccinationList: updatedData})
-  }
-
-  render() {
-    const {vaccinationList} = this.state
-    return (
-      <div>
-        <h1 className="coverage">vaccination coverage</h1>
-        <BarChart width={730} height={250} data={vaccinationList}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis
-            dataKey="vaccineDate"
-            tick={{stroke: 'gray', strokeWidth: 0}}
-          />
-          <YAxis
-            tickFormatter={DataFormatter}
-            tick={{
-              stroke: 'gray',
-              strokeWidth: 0,
-            }}
-          />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="Dose1" fill="#5a8dee" />
-          <Bar dataKey="Dose2" fill=" #f54394" />
-        </BarChart>
-      </div>
-    )
-  }
+  return (
+    <ResponsiveContainer width="100%" height={500}>
+      <BarChart
+        data={data}
+        margin={{
+          top: 5,
+        }}
+      >
+        <XAxis
+          dataKey="vaccineDate"
+          tick={{
+            stroke: 'gray',
+            strokeWidth: 1,
+          }}
+        />
+        <YAxis
+          tickFormatter={DataFormatter}
+          tick={{
+            stroke: 'gray',
+            strokeWidth: 0,
+          }}
+        />
+        <Legend
+          wrapperStyle={{
+            padding: 30,
+          }}
+        />
+        <Bar
+          dataKey="dose1"
+          name="dose1"
+          fill="#5a8dee"
+          barSize="20%"
+          radius={[10, 10, 0, 0]}
+        />
+        <Bar
+          dataKey="dose2"
+          name="dose2"
+          fill="#f54394"
+          barSize="20%"
+          radius={[10, 10, 0, 0]}
+        />
+      </BarChart>
+    </ResponsiveContainer>
+  )
 }
 
 export default VaccinationCoverage

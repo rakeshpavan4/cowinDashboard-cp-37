@@ -1,56 +1,33 @@
-// Write your code here
-// Write your code here
-import {Component} from 'react'
-import './index.css'
-import {PieChart, Pie} from 'recharts'
+import {PieChart, Pie, Legend, Cell, ResponsiveContainer} from 'recharts'
 
-class VaccinationByAge extends Component {
-  state = {vaccinationList: []}
+const VaccinationByAge = props => {
+  const {data} = props
 
-  componentDidMount() {
-    this.getDidMount()
-  }
-
-  getDidMount = async () => {
-    const response = await fetch('https://apis.ccbp.in/covid-vaccination-data')
-    const data = await response.json()
-    const updatedData = data.vaccination_by_age.map(each => ({
-      age: each.age,
-      count: each.count,
-    }))
-    this.setState({vaccinationList: updatedData})
-  }
-
-  render() {
-    const {vaccinationList} = this.state
-    return (
-      <div>
-        <h1 className="coverage">Vaccination By age</h1>
-        <PieChart width={730} height={250}>
-          <Pie
-            data={vaccinationList}
-            dataKey="value"
-            nameKey="name"
-            cx="50%"
-            cy="50%"
-            outerRadius={50}
-            fill="#8884d8"
-          />
-          <Pie
-            data={vaccinationList}
-            dataKey="value"
-            nameKey="name"
-            cx="50%"
-            cy="50%"
-            innerRadius={60}
-            outerRadius={80}
-            fill="#82ca9d"
-            label
-          />
-        </PieChart>
-      </div>
-    )
-  }
+  return (
+    <ResponsiveContainer width="100%" height={300}>
+      <PieChart>
+        <Pie
+          cx="50%"
+          cy="40%"
+          data={data}
+          startAngle={0}
+          endAngle={360}
+          outerRadius="60%"
+          dataKey="count"
+        >
+          <Cell name="18-44" fill="#5a8dee" />
+          <Cell name="44-60" fill="#a3df9f" />
+          <Cell name="Above 60" fill="#2cc6c6" />
+        </Pie>
+        <Legend
+          iconType="circle"
+          layout="horizontal"
+          verticalAlign="bottom"
+          align="center"
+        />
+      </PieChart>
+    </ResponsiveContainer>
+  )
 }
 
 export default VaccinationByAge

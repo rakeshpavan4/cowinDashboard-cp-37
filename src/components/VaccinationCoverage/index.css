@@ -1,4 +1,14 @@
-/* Write your CSS here */
-.coverage {
-  color: #94a3b8;
+.first-chart {
+  background-color: #1c1c2b;
+  padding: 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 20px;
+}
+
+.title {
+  font-family: 'roboto';
+  color: #cbd5e1;
+  font-size: 24px;
+  font-weight: 700;
 }
